@@ -261,7 +261,7 @@ HTTP status 200 y el siguiente *mensaje*: `"operacion": "Pelicula Eliminada"`
 HTTP status 500 y el siguiente *mensaje*: `"operacion": "Pelicula no encontrada"`
 
 -------------------------------------------------
-### **Obtener Pelicula** 
+### **Obtener Peliculas** 
 Este metodo nos permite *obtener* toda la información en la base de datos de todas las *Peliculas* registradas 
 * **end point**: *`/Peliculas/obtenerPeliculas`*
 * **método**: *`GET`*
