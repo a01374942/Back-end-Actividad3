@@ -6,9 +6,9 @@ exports.postAgregarMuseos = async (req,res)=>{
     const museos = new Museos(req.body)
     museos._id = new mongoose.Types.ObjectId() //se le asigna un id al objeto 
         try{
-            // Agregar documento a la coleccion y verifica que no se repitan los valores
-            const userExists = await Museos.exists({Nombre: req.body.Nombre});
-            if (!userExists){
+            // Agregar documento a la coleccion y verifica que no se repita el nombre del museo
+            const museoExs = await Museos.exists({Nombre: req.body.Nombre});
+            if (!museoExs){
                 await museos.save()
                 console.log(museos)
                 console.log("Museo registrado")
@@ -30,7 +30,7 @@ exports.getObtenerMuseos = async (req,res)=>{
     res.json(Mus)
 }
 exports.postActualizarMuseos = async (req,res)=>{
-    // Filtro y cambio
+    // Filtro y cambio para actualizar la info de museo
     try {
         await Museos.findOneAndUpdate({ Nombre: req.body.Nombre },req.body.actualizar)
         Museos.exists()
@@ -43,6 +43,7 @@ exports.postActualizarMuseos = async (req,res)=>{
 }
 
 exports.postBorrarMuseos = async (req,res)=>{
+    //Borramos de acuerdo al nombre del Museo
     try{
         const existe = await Museos.exists({ Nombre: req.body.Nombre })
         if (existe){

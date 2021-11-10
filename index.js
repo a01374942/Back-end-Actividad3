@@ -16,10 +16,3 @@ mongoose.connect('mongodb://user6:root@54.227.9.233:27017/base6?authSource=admin
     })
     .catch(err=>console.log(err))
 
-/*app.use("/Museos",MuseosRoutes)
-//conectar con mongoose atraves de la maquina virtual establecida
-mongoose.connect('mongodb://user6:root@54.227.9.233:27017/base6?authSource=admin')
-    .then(()=>{
-        app.listen(8080,()=>console.log("Servidor en linea"))
-    })
-    .catch(err=>console.log(err))*/

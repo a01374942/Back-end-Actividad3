@@ -6,9 +6,9 @@ exports.postAgregarPeliculas = async (req,res)=>{
     const peliculas = new Peliculas(req.body)
     peliculas._id = new mongoose.Types.ObjectId() //se le asigna un id al objeto 
         try{
-            // Agregar documento a la coleccion y verifica que no se repitan los valores
-            const userExists = await Peliculas.exists({Titulo: req.body.Titulo});
-            if (!userExists){
+            // Agregar documento a la coleccion y verifica que no se repitan el nombre de la pelicula
+            const movieExists = await Peliculas.exists({Titulo: req.body.Titulo});
+            if (!movieExists){
                 await peliculas.save()
                 console.log(peliculas)
                 console.log("Pelicula registrada")
@@ -30,7 +30,7 @@ exports.getObtenerPeliculas = async (req,res)=>{
     res.json(Pel)
 }
 exports.postActualizarPeliculas = async (req,res)=>{
-    // Filtro y cambio
+    // Filtro y cambio para actualizar info de las pelis
     try {
         await Peliculas.findOneAndUpdate({ Titulo: req.body.Titulo },req.body.actualizar)
         Peliculas.exists()
@@ -43,6 +43,7 @@ exports.postActualizarPeliculas = async (req,res)=>{
 }
 
 exports.postBorrarPeliculas = async (req,res)=>{
+    //Borramos de acuerdo al nombre de la pelicula
     try{
         const existe = await Peliculas.exists({ Titulo: req.body.Titulo })
         if (existe){
